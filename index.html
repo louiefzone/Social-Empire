@@ -1,272 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Social Empire — Full Prototype</title>
+<title>Social Empire</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#090c18;color:#f4f6ff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}button{cursor:pointer}.app{max-width:1200px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand h1{margin:0;font-size:28px}.brand p{margin:3px 0;color:#8993b3}.toolbar{display:flex;gap:7px}.toolbar button,.secondary{background:#171d35;border:1px solid #364066;color:#fff;border-radius:10px;padding:8px 12px}
-.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:15px 0}.stat,.card{background:#12172a;border:1px solid #252d4c;border-radius:15px}.stat{padding:11px}.stat span{display:block;color:#8791b0;font-size:10px;text-transform:uppercase;letter-spacing:.09em}.stat strong{display:block;margin-top:4px;font-size:18px}.money{color:#7fe0a6}.grid{display:grid;grid-template-columns:1.4fr .8fr;gap:12px}.card{padding:14px;margin-bottom:12px}.card h2{font-size:15px;margin:0 0 10px}.sub{color:#8791b0;font-size:12px}.notice{background:#0e1428;border:1px solid #2d365a;border-radius:11px;padding:10px;font-size:12px;color:#b7bfd9;line-height:1.45}.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.content{background:#0e1428;border:1px solid #30395e;border-radius:12px;padding:11px;text-align:left;color:#fff;min-height:116px}.content:hover{border-color:#7786dc}.content:disabled{opacity:.45;cursor:not-allowed}.content .icon{font-size:23px}.content b{display:block;margin:4px 0}.content small{display:block;color:#9fa8c6;font-size:11px;line-height:1.3}.pill{display:inline-block;margin-top:7px;padding:3px 6px;border:1px solid #394469;border-radius:999px;color:#b9c1db;font-size:10px}
-.post{background:#0e1428;border:1px solid #293256;border-radius:13px;padding:12px;margin-top:8px}.post-head{display:flex;justify-content:space-between;gap:8px}.post-title{font-weight:800}.post-id{font-size:10px;color:#77819f}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:9px}.metric{background:#151b31;border-radius:9px;padding:7px}.metric span{display:block;color:#828ca9;font-size:9px}.metric b{display:block;font-size:12px;margin-top:3px}.bar{height:7px;background:#222945;border-radius:99px;overflow:hidden;margin:8px 0}.bar div{height:100%;background:#7585dc}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.actions button{background:#202845;border:1px solid #3c4770;color:#fff;border-radius:9px;padding:7px 10px;font-size:12px}.actions button.primary{background:#5f70ce;border-color:#7485df}.actions button:disabled{opacity:.4;cursor:not-allowed}.feed{max-height:260px;overflow:auto}.feed-row{padding:7px 0;border-bottom:1px solid #202741;font-size:11px;color:#aeb6d0}.platform{padding:9px 0;border-bottom:1px solid #222946}.platform:last-child{border:0}.platform .name{font-weight:750}.platform small{display:block;color:#8791b0;margin-top:2px}.tag{font-size:10px;border:1px solid #3a456d;padding:3px 6px;border-radius:999px;color:#bbc3dd}.upgrade{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #222946}.upgrade:last-child{border:0}.upgrade button{background:#202844;border:1px solid #3b4670;color:#fff;border-radius:8px;padding:7px 9px}.upgrade button:disabled{opacity:.4}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{background:#0e1428;border:1px solid #30395e;border-radius:11px;padding:10px}.choice button{margin-top:8px;width:100%;background:#202844;border:1px solid #3c4770;color:#fff;border-radius:8px;padding:7px}.event{border:1px solid #4a5682;background:#111831;border-radius:12px;padding:11px;margin-top:8px}.event h3{margin:0 0 5px;font-size:14px}.small{font-size:11px;color:#929cb9}.center{text-align:center}.big{font-size:27px;font-weight:850}.hidden{display:none}.danger{color:#ff9a9a}.good{color:#8fe0ae}.gold{color:#ffd88b}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:560px){.app{padding:10px}.stats{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}.twocol{grid-template-columns:1fr}.brand h1{font-size:24px}}
+*{box-sizing:border-box}body{margin:0;background:#f4f5f9;color:#1d2333;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:12px 12px 80px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.logo{font-weight:900;font-size:24px;letter-spacing:-.7px}.logo span{font-size:12px;color:#8991a5;font-weight:600;margin-left:5px}
+.tools button{background:white;border:1px solid #dfe3ec;border-radius:9px;padding:7px 9px;color:#60697c;font-size:11px}
+.hero{background:linear-gradient(135deg,#6575df,#7b55c9);color:white;border-radius:18px;padding:17px;box-shadow:0 8px 25px #6575df22}
+.hero-top{display:flex;justify-content:space-between;gap:10px}.label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;opacity:.75}.money{font-size:30px;font-weight:900;margin-top:2px}.career{text-align:right}.career b{display:block;font-size:18px}.career small{opacity:.75}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}.stat{background:#ffffff18;border:1px solid #ffffff22;border-radius:12px;padding:9px}.stat span{display:block;font-size:9px;text-transform:uppercase;opacity:.7}.stat b{font-size:16px}
+.card{background:#fff;border:1px solid #e2e5ed;border-radius:16px;padding:14px;margin-top:11px;box-shadow:0 4px 14px #1e29400a}.card h2{font-size:14px;margin:0 0 10px}.create-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.create{background:#f8f9fc;border:1px solid #e0e4ed;border-radius:13px;padding:11px;text-align:left;min-height:105px;color:#202638}.create:hover{border-color:#6979d8;transform:translateY(-1px)}.create:disabled{opacity:.45;cursor:not-allowed}.create .ico{font-size:22px}.create b{display:block;margin:3px 0}.create small{display:block;color:#7a8398;font-size:10px;line-height:1.3}.price{display:inline-block;margin-top:6px;background:#eceffd;color:#5968c4;border-radius:99px;padding:3px 6px;font-size:9px;font-weight:800}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.sub{font-size:10px;color:#8991a4}
+.post{border:1px solid #e4e7ef;border-radius:13px;padding:11px;margin-top:8px;background:#fff}.post-head{display:flex;justify-content:space-between;gap:10px}.post-name{font-weight:800;font-size:13px}.post-status{font-size:10px;color:#7b8498}.pill{font-size:9px;border:1px solid #dfe3eb;border-radius:99px;padding:3px 6px;color:#687187;white-space:nowrap}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.metric{background:#f6f7fa;border-radius:9px;padding:7px}.metric span{display:block;color:#8a92a4;font-size:8px}.metric b{display:block;font-size:12px;margin-top:2px}.refresh{width:100%;margin-top:8px;border:0;border-radius:10px;background:#6677df;color:#fff;padding:9px;font-weight:800}.refresh:disabled{background:#c5c9d5;cursor:not-allowed}.mini{margin-top:7px;font-size:10px;color:#8991a4}.bar{height:6px;background:#e8eaf0;border-radius:99px;overflow:hidden;margin-top:7px}.bar div{height:100%;background:#7180dc}
+.pop{position:fixed;inset:0;background:#10162dcc;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.pop-box{max-width:430px;width:100%;background:#fff;border-radius:22px;padding:23px;text-align:center;box-shadow:0 20px 70px #0005;animation:pop .2s ease-out}@keyframes pop{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}.pop-icon{font-size:48px}.pop h2{margin:8px 0 5px;font-size:24px}.pop p{color:#727b90;line-height:1.45;font-size:13px}.pop .reward{font-size:30px;font-weight:900;color:#5f70d4;margin:13px 0}.pop button{width:100%;border:0;border-radius:11px;padding:11px;margin-top:7px;font-weight:800;background:#6677df;color:#fff}.pop button.alt{background:#eef0f6;color:#596276}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}.tab{border:1px solid #dfe3eb;background:#fff;border-radius:10px;padding:8px;font-size:11px;color:#687187}.tab.active{background:#eef0ff;border-color:#b9c2f3;color:#5968c4;font-weight:800}
+.tab-content{display:none}.tab-content.active{display:block}.upgrade{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #edf0f4}.upgrade:last-child{border:0}.upgrade b{font-size:12px}.upgrade small{display:block;color:#8991a4;font-size:10px;margin-top:2px}.buy{background:#6677df;border:0;color:#fff;border-radius:8px;padding:7px 9px;font-size:10px;font-weight:800}.buy:disabled{background:#c9ccd5}.platform{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #edf0f4}.platform:last-child{border:0}.platform b{font-size:12px}.platform small{display:block;color:#8a92a4;font-size:9px;margin-top:2px}.log{max-height:180px;overflow:auto}.log div{font-size:10px;color:#7e879a;padding:5px 0;border-bottom:1px solid #edf0f4}.empty{color:#9299aa;font-size:11px;text-align:center;padding:12px}
+@media(max-width:520px){.create-grid{grid-template-columns:repeat(2,1fr)}.stats{gap:5px}.stat{padding:7px}.stat b{font-size:14px}.money{font-size:26px}.metrics{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="top"><div class="brand"><h1>Social Empire</h1><p>Full Prototype — build an audience, then build the machine.</p></div>
-<div class="toolbar"><button onclick="save()">Save</button><button onclick="exportSave()">Export Save</button><button onclick="resetGame()">Reset</button></div></div>
+<div class="top"><div class="logo">Social Empire <span>v2</span></div><div class="tools"><button onclick="save()">Save</button> <button onclick="resetGame()">Reset</button></div></div>
 
-<div class="stats">
-<div class="stat"><span>Cash</span><strong id="cash" class="money">$100</strong></div>
-<div class="stat"><span>Followers</span><strong id="followers">0</strong></div>
-<div class="stat"><span>Fame</span><strong id="fame">0</strong></div>
-<div class="stat"><span>Lifetime Views</span><strong id="views">0</strong></div>
-<div class="stat"><span>Avg Engagement</span><strong id="engagement">0%</strong></div>
-<div class="stat"><span>Net Worth</span><strong id="networth">$100</strong></div>
+<div class="hero">
+ <div class="hero-top">
+  <div><div class="label">Cash</div><div class="money" id="cash">$100</div></div>
+  <div class="career"><small>YOU ARE A</small><b id="career">Nobody</b><small id="next">First 100 followers</small></div>
+ </div>
+ <div class="stats">
+  <div class="stat"><span>Followers</span><b id="followers">0</b></div>
+  <div class="stat"><span>Fame</span><b id="fame">0</b></div>
+  <div class="stat"><span>Views</span><b id="views">0</b></div>
+ </div>
 </div>
 
-<div id="eventArea"></div>
-
-<div class="grid">
-<main>
 <div class="card">
-<h2>Create Content</h2>
-<div class="notice">Create multiple pieces at once. Production timers only occupy production slots; published posts wait for <b>you</b> to refresh them. Nothing silently generates views while you're away.</div>
-<div class="content-grid" id="contentGrid"></div>
+ <div class="section-head"><h2>✨ Make a Post</h2><span class="sub">Pick anything. We'll handle the rest.</span></div>
+ <div class="create-grid" id="createGrid"></div>
 </div>
 
-<div class="card"><h2>Production Queue</h2><div id="queue"></div></div>
-<div class="card"><h2>Published Posts</h2><div id="posts"></div></div>
+<div class="card">
+ <div class="section-head"><h2>📱 Your Posts</h2><span class="sub" id="postHint">Tap CHECK RESULTS to see what happens.</span></div>
+ <div id="posts"></div>
+</div>
 
-<div class="card"><h2>Creator Career</h2><div id="career"></div></div>
-</main>
-
-<aside>
-<div class="card"><h2>Audience & Platforms</h2><div id="platforms"></div></div>
-<div class="card"><h2>Equipment & Team</h2><div id="upgrades"></div></div>
-<div class="card"><h2>Revenue</h2><div id="revenue"></div></div>
-<div class="card"><h2>Business Opportunities</h2><div id="opps"></div></div>
-<div class="card"><h2>Activity</h2><div class="feed" id="log"></div></div>
-</aside>
+<div class="card">
+ <div class="section-head"><h2>💼 Your Business</h2><span class="sub">Make money. Get bigger.</span></div>
+ <div class="tabs">
+  <button class="tab active" onclick="showTab('upgrades',this)">Upgrades</button>
+  <button class="tab" onclick="showTab('platforms',this)">Platforms</button>
+  <button class="tab" onclick="showTab('activity',this)">Activity</button>
+ </div>
+ <div id="upgrades" class="tab-content active"></div>
+ <div id="platforms" class="tab-content"></div>
+ <div id="activity" class="tab-content"></div>
 </div>
 </div>
+<div id="popup"></div>
 
 <script>
-const G={
-content:{
-photo:{n:"Photo",i:"📸",d:"Fast brand maintenance.",t:5,c:0,q:.50,r:.70,e:1.00,f:.55,m:.18,slot:"basic"},
-short:{n:"Short Video",i:"🎬",d:"High discovery and follower growth.",t:8,c:5,q:.72,r:1.45,e:1.12,f:1.28,m:.42,slot:"video"},
-text:{n:"Text",i:"✍️",d:"Cheap conversation and engagement.",t:3,c:0,q:.45,r:.62,e:1.24,f:.72,m:.08,slot:"basic"},
-long:{n:"Long Video",i:"🎥",d:"Slow, expensive, high-value content.",t:15,c:35,q:1.00,r:1.05,e:1.15,f:1.02,m:1.55,slot:"video"},
-podcast:{n:"Podcast",i:"🎙️",d:"Loyal audience and sponsorship potential.",t:20,c:45,q:.90,r:.70,e:1.36,f:.95,m:1.35,slot:"audio"},
-live:{n:"Livestream",i:"🔴",d:"Timed community and monetization event.",t:25,c:50,q:1.00,r:1.10,e:1.50,f:1.18,m:1.25,slot:"live"}
+const D={
+types:{
+photo:{name:"Photo",icon:"📸",desc:"Quick, easy, keeps your audience interested.",time:4,cost:0,q:.50,r:.70,e:1,f:.55,m:.18},
+short:{name:"Short Video",icon:"🎬",desc:"Fast growth and big viral potential.",time:6,cost:5,q:.72,r:1.45,e:1.1,f:1.28,m:.42},
+text:{name:"Post",icon:"✍️",desc:"Start conversations with your audience.",time:2,cost:0,q:.45,r:.62,e:1.25,f:.72,m:.08},
+long:{name:"Long Video",icon:"🎥",desc:"More work, but much more valuable.",time:11,cost:35,q:1,r:1.05,e:1.15,f:1.02,m:1.55},
+podcast:{name:"Podcast",icon:"🎙️",desc:"Build a loyal audience and attract sponsors.",time:14,cost:45,q:.90,r:.72,e:1.35,f:.95,m:1.35},
+live:{name:"Livestream",icon:"🔴",desc:"Connect with your audience in a big way.",time:16,cost:50,q:1,r:1.1,e:1.5,f:1.18,m:1.25}
 },
 platforms:{
-vibra:{n:"Vibra",i:"◎",u:0,br:.075,disc:1.0,er:1.0,fc:1.0,rpm:2.1},
-loop:{n:"Loop",i:"▶",u:500,br:.045,disc:2.5,er:.92,fc:1.28,rpm:1.2},
-pulse:{n:"Pulse",i:"✦",u:1000,br:.065,disc:1.25,er:1.25,fc:.92,rpm:1.5},
-viewtube:{n:"ViewTube",i:"▣",u:2500,br:.055,disc:1.15,er:1.1,fc:1.05,rpm:5.8},
-castbox:{n:"Castbox",i:"◉",u:5000,br:.07,disc:.65,er:1.42,fc:.9,rpm:7.5},
-livewave:{n:"LiveWave",i:"●",u:10000,br:.06,disc:1.35,er:1.5,fc:1.08,rpm:4.2}
+vibra:{name:"Vibra",icon:"◎",unlock:0,base:.075,disc:1,r:2.1},
+loop:{name:"Loop",icon:"▶",unlock:500,base:.045,disc:2.5,r:1.2},
+pulse:{name:"Pulse",icon:"✦",unlock:1000,base:.065,disc:1.25,r:1.5},
+viewtube:{name:"ViewTube",icon:"▣",unlock:2500,base:.055,disc:1.15,r:5.8},
+castbox:{name:"Castbox",icon:"◉",unlock:5000,base:.07,disc:.65,r:7.5},
+livewave:{name:"LiveWave",icon:"●",unlock:10000,base:.06,disc:1.35,r:4.2}
 },
 upgrades:[
-{id:"phone",n:"Better Smartphone",c:150,d:"+8% quality on future content",q:.08},
-{id:"light",n:"Ring Light",c:350,d:"+7% quality on future content",q:.07},
-{id:"edit",n:"Editing Software",c:700,d:"+10% quality on future video",q:.10},
-{id:"camera",n:"Creator Camera",c:1800,d:"+16% quality on future photo/video",q:.16},
-{id:"mic",n:"Studio Microphone",c:2500,d:"+12% quality on future audio",q:.12},
-{id:"editor",n:"Hire an Editor",c:5000,d:"Video production 35% faster",tv:.35},
-{id:"photog",n:"Hire a Photographer",c:6500,d:"Automatically creates photos",autoPhoto:true},
-{id:"manager",n:"Social Media Manager",c:9000,d:"Automatically refreshes one published post",autoRefresh:true},
-{id:"producer",n:"Producer",c:15000,d:"Production 25% faster",ta:.25},
-{id:"streammgr",n:"Streaming Manager",c:22000,d:"Livestreams resolve 35% faster",live:.35},
-{id:"podprod",n:"Podcast Producer",c:30000,d:"Podcast production 40% faster",pod:.40},
-{id:"creative",n:"Creative Director",c:60000,d:"+20% quality and +10% follower conversion",q:.20,fc:.10},
-{id:"company",n:"Production Company",c:150000,d:"Automates production pipeline",company:true}
-],
-monetize:{vibra:[1000,.05],loop:[5000,.06],pulse:[2500,.07],viewtube:[1000,.05],castbox:[500,.10],livewave:[750,.08]}
+{id:"phone",name:"Better Phone",cost:150,desc:"Your posts look better.",q:.08},
+{id:"light",name:"Ring Light",cost:350,desc:"Better photos and videos.",q:.07},
+{id:"edit",name:"Editing App",cost:700,desc:"Make better videos.",q:.10},
+{id:"camera",name:"Creator Camera",cost:1800,desc:"A big quality boost.",q:.16},
+{id:"mic",name:"Studio Mic",cost:2500,desc:"Better podcasts.",q:.12},
+{id:"editor",name:"Hire an Editor",cost:5000,desc:"Videos get made faster.",tv:.35},
+{id:"photog",name:"Hire a Photographer",cost:6500,desc:"Photos can be made automatically.",photo:true},
+{id:"manager",name:"Hire a Social Manager",cost:9000,desc:"Your best post gets checked automatically.",manager:true},
+{id:"producer",name:"Hire a Producer",cost:15000,desc:"You can make more posts at once.",producer:true},
+{id:"stream",name:"Streaming Manager",cost:22000,desc:"Livestreams finish faster.",stream:true},
+{id:"pod",name:"Podcast Producer",cost:30000,desc:"Podcasts finish faster.",pod:true},
+{id:"creative",name:"Creative Director",cost:60000,desc:"Everything gets noticeably better.",q:.20,fc:.10},
+{id:"company",name:"Your Production Company",cost:150000,desc:"You're running a real media business.",company:true}
+]};
+let S=JSON.parse(localStorage.getItem("socialEmpireSimple")||"null")||{
+cash:100,followers:0,fame:0,views:0,created:0,posts:[],queue:[],equipment:[],logs:["Welcome! You're starting with zero followers. Let's change that."],seq:0,platformFollowers:{vibra:0,loop:0,pulse:0,viewtube:0,castbox:0,livewave:0},engHistory:[],popup:null
 };
-
-let S=JSON.parse(localStorage.getItem("socialEmpireFull")||"null")||{
-cash:100,followers:0,fame:0,views:0,created:0,produced:0,networth:100,
-queue:[],posts:[],equipment:[],unlocked:["photo","short","text"],
-history:[],logs:["Welcome. Your audience is currently zero. That's the point."],
-opps:[],lastEvent:0,postSeq:0,prestige:0,stats:{},
-platformFollowers:{vibra:0,loop:0,pulse:0,viewtube:0,castbox:0,livewave:0}
-};
-
-function num(n){if(n<1000)return Math.floor(n);if(n<1e6)return (n/1e3).toFixed(1)+"K";if(n<1e9)return (n/1e6).toFixed(2)+"M";return (n/1e9).toFixed(2)+"B"}
-function cash(n){return "$"+(n<1000?Math.floor(n):n<1e6?(n/1e3).toFixed(1)+"K":(n/1e6).toFixed(2)+"M")}
-function has(id){return S.equipment.includes(id)}
-function qBonus(){return S.equipment.reduce((a,id)=>a+(G.upgrades.find(x=>x.id===id)?.q||0),0)}
-function fcBonus(){return has("creative")?.10:0}
-function avgER(){let a=S.history.concat(S.posts.filter(x=>x.views>0)).slice(-20),v=a.reduce((z,p)=>z+p.views,0),e=a.reduce((z,p)=>z+p.engagement,0);return v?e/v:0}
-function platformUnlocked(id){return S.followers>=G.platforms[id].u}
-function eligible(id){let m=G.monetize[id];return platformUnlocked(id)&&S.followers>=m[0]&&avgER()>=m[1]}
-function productionTime(type){
- let t=G.content[type].t;
- if(has("producer"))t*=.75;
- if((type==="short"||type==="long")&&has("editor"))t*=.65;
- if(type==="live"&&has("streammgr"))t*=.65;
- if(type==="podcast"&&has("podprod"))t*=.60;
- return Math.max(2,Math.ceil(t));
-}
-function log(x){S.logs.unshift(new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})+" — "+x);S.logs=S.logs.slice(0,70)}
+const has=id=>S.equipment.includes(id);
+const money=n=>"$"+(n<1000?Math.floor(n):n<1e6?(n/1000).toFixed(1)+"K":(n/1e6).toFixed(2)+"M");
+const fmt=n=>n<1000?Math.floor(n):n<1e6?(n/1000).toFixed(1)+"K":n<1e9?(n/1e6).toFixed(2)+"M":(n/1e9).toFixed(2)+"B";
+function log(x){S.logs.unshift(new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+" — "+x);S.logs=S.logs.slice(0,45)}
+function qBonus(){return S.equipment.reduce((a,id)=>a+(D.upgrades.find(x=>x.id===id)?.q||0),0)}
+function avgEng(){let a=S.engHistory.slice(-15),v=a.reduce((x,y)=>x+y.v,0),e=a.reduce((x,y)=>x+y.e,0);return v?e/v:0}
+function career(){let f=S.followers;if(f<100)return["Nobody","First 100 followers"];if(f<1000)return["Creator","People are noticing"];if(f<10000)return["Influencer","You've built an audience"];if(f<100000)return["Celebrity","Brands know you"];if(f<1000000)return["Star","You're a household name"];if(f<10000000)return["Mogul","You're running an empire"];return["Media Titan","You own the attention"]}
+function unlocked(id){return S.followers>=D.platforms[id].unlock}
+function prodTime(type){let t=D.types[type].time;if(has("producer"))t*=.75;if((type==="short"||type==="long")&&has("editor"))t*=.65;if(type==="live"&&has("stream"))t*=.65;if(type==="podcast"&&has("pod"))t*=.6;return Math.max(1,Math.ceil(t))}
 function create(type){
- let c=G.content[type];
- if(S.cash<c.c){log("You can't afford that production.");return}
- let maxSlots=2+(has("producer")?2:0)+(has("company")?6:0);
- if(S.queue.length>=maxSlots){log("Your production queue is full.");return}
- S.cash-=c.c;S.postSeq++;
- S.queue.push({id:S.postSeq,type,remain:productionTime(type),total:productionTime(type),quality:Math.min(1.6,c.q*(1+qBonus())*(.9+Math.random()*.22)),status:"Producing"});
- S.created++;log(`${c.i} Production started: ${c.n} #${S.postSeq}.`);
- render();
+ let c=D.types[type],slots=2+(has("producer")?2:0)+(has("company")?5:0);
+ if(S.queue.length>=slots){log("Your team is busy. You can still check your published posts.");render();return}
+ if(S.cash<c.cost){log("You need more cash for that post.");render();return}
+ S.cash-=c.cost;S.seq++;
+ S.queue.push({id:S.seq,type,remain:prodTime(type),total:prodTime(type),q:Math.min(1.65,c.q*(1+qBonus())*(.92+Math.random()*.16))});
+ log(`${c.icon} Making ${c.name} #${S.seq}.`);render()
 }
-function finishQueue(){
- for(let i=S.queue.length-1;i>=0;i--){
-  let x=S.queue[i];x.remain--;
-  if(x.remain<=0){
-   let post={id:x.id,type:x.type,quality:x.quality,views:0,engagement:0,followers:0,revenue:0,refreshes:0,momentum:0,phase:"Fresh",platforms:{},createdAt:Date.now()};
-   S.posts.unshift(post);S.queue.splice(i,1);S.produced++;log(`📣 ${G.content[x.type].n} #${x.id} published.`);
-   if(x.type==="live")log("🔴 Livestream is ready. Refresh it to resolve the next chunk of performance.");
-  }
+function finish(){
+ for(let i=S.queue.length-1;i>=0;i--){let q=S.queue[i];q.remain--;if(q.remain<=0){let p={id:q.id,type:q.type,q:q.q,views:0,eng:0,foll:0,money:0,checks:0,state:"New",platforms:{}};S.posts.unshift(p);S.queue.splice(i,1);S.created++;log(`${D.types[q.type].icon} ${D.types[q.type].name} #${q.id} is ready!`);}}
+}
+function check(id){
+ let p=S.posts.find(x=>x.id===id);if(!p||p.state==="Done")return;
+ let c=D.types[p.type], life=p.checks<3?1:p.checks<7?.82:p.checks<12?.58:p.checks<17?.30:.08;
+ let roll=Math.random(),mult=.6+Math.random()*1.25,event="",icon="";
+ if(roll>.985){mult*=10;event="viral";icon="🚀"}
+ else if(roll>.91){mult*=3.2;event="hot";icon="🔥"}
+ else if(roll<.035){mult*=.25;event="cold";icon="🧊"}
+ let total=0,eng=0,followers=0,rev=0;
+ for(let [id,pl] of Object.entries(D.platforms)){
+  if(!unlocked(id))continue;
+  let base=S.platformFollowers[id]*pl.base;
+  let discovery=(5+Math.pow(Math.max(1,S.followers),.48)*1.35)*pl.disc*c.r*p.q*life*mult;
+  let views=Math.max(1,base+discovery);
+  let er=Math.min(.25,Math.max(.008,.03*c.e*(.78+p.q*.42)*(.9+Math.random()*.22)));
+  let e=views*er;
+  let f=views*Math.min(.03,.00115*c.f*(.76+p.q*.5)*(1+(e/Math.max(views,1)))*((has("creative")?1.1:1)));
+  let monetized=unlocked(id)&&S.followers>=(id==="castbox"?500:id==="livewave"?750:id==="loop"?5000:id==="pulse"?2500:1000)&&avgEng()>=(id==="castbox"?.10:id==="loop"?.06:id==="pulse"?.07:.05);
+  let m=monetized?views/1000*pl.r*c.m:0;
+  total+=views;eng+=e;followers+=f;rev+=m;
+  S.platformFollowers[id]+=f;
+  p.platforms[id]??={views:0,eng:0,foll:0,money:0};
+  p.platforms[id].views+=views;p.platforms[id].eng+=e;p.platforms[id].foll+=f;p.platforms[id].money+=m;
  }
+ p.views=p.views+total;p.eng+=eng;p.foll+=followers;p.money+=rev;p.checks++;
+ p.state=p.checks<3?"New":p.checks<8?"Taking Off":p.checks<13?"Doing Well":p.checks<18?"Slowing Down":"Done";
+ S.views+=total;S.followers+=followers;S.cash+=rev;S.fame+=total/100000;S.engHistory.push({v:total,e:eng});S.engHistory=S.engHistory.slice(-30);
+ if(event==="viral"){showPopup("🚀","YOUR POST IS GOING VIRAL!",`People can't stop watching ${c.name.toLowerCase()}.`,`+${fmt(total)} views`,()=>{S.followers+=Math.max(20,followers*.4);log("🚀 Viral moment! Your audience exploded.");render()});}
+ else if(event==="hot"){showPopup("🔥","PEOPLE ARE LOVING IT",`The algorithm is pushing your post to more people.`,`+${fmt(total)} views`,()=>render())}
+ else if(event==="cold"){log(`${c.icon} A slow check: only +${fmt(total)} views.`)}
+ else log(`${c.icon} ${c.name} #${p.id}: +${fmt(total)} views • +${fmt(followers)} followers${rev?` • +${money(rev)}`:""}`);
+ maybeBusiness();
+ render()
 }
-function reachRate(f){if(f<100)return .25;if(f<1000)return .15;if(f<10000)return .10;if(f<100000)return .07;if(f<1e6)return .05;return .035}
-function refreshPost(id){
- let p=S.posts.find(x=>x.id===id);if(!p)return;
- if(p.phase==="Dead"){log("That post is dead. Create something new.");return}
- let c=G.content[p.type], burst=.55+Math.random()*1.35, quality=p.quality;
- let life=p.refreshes<3?1:p.refreshes<7?.82:p.refreshes<12?.58:p.refreshes<18?.30:.10;
- let trend=1;
- let roll=Math.random();
- let event="";
- if(roll>.985){trend=10;event="🚀 VIRAL SPIKE"}
- else if(roll>.92){trend=3.2;event="🔥 TRENDING"}
- else if(roll<.04){trend=.28;event="🧊 Weak distribution"}
- let totalViews=0,totalEng=0,totalF=0,totalRev=0;
- for(const [pid,pl] of Object.entries(G.platforms)){
-  if(!platformUnlocked(pid))continue;
-  let followerBase=S.platformFollowers[pid]*pl.br;
-  let discovery=(18+Math.pow(Math.max(1,S.followers),.48)*2.8)*pl.disc*c.r*quality*life*burst*trend;
-  let views=Math.max(1,(followerBase+discovery));
-  let er=Math.min(.30,Math.max(.008,.032*c.e*pl.er*(.78+quality*.38)*(0.88+Math.random()*.24)));
-  let engagement=views*er;
-  let follows=views*Math.min(.035,.0012*c.f*pl.fc*(.72+quality*.55)*(1+Math.min(.8,engagement/Math.max(views,1)))+fcBonus()/10);
-  let revenue=eligible(pid)?views/1000*pl.rpm*c.m:0;
-  totalViews+=views;totalEng+=engagement;totalF+=follows;totalRev+=revenue;
-  p.platforms[pid]??={views:0,engagement:0,followers:0,revenue:0};
-  p.platforms[pid].views+=views;p.platforms[pid].engagement+=engagement;p.platforms[pid].followers+=follows;p.platforms[pid].revenue+=revenue;
- }
- p.views+=totalViews;p.engagement+=totalEng;p.followers+=totalF;p.revenue+=totalRev;p.refreshes++;
- p.momentum=(p.momentum*.65)+(trend*life*.35);
- p.phase=p.refreshes<3?"Fresh":p.refreshes<8?"Growing":p.refreshes<13?"Mature":p.refreshes<19?"Declining":"Dead";
- S.views+=totalViews;S.followers+=totalF;S.cash+=totalRev;S.fame+=totalViews/100000;
- if(totalF>0){for(const pid of Object.keys(p.platforms)){let pf=p.platforms[pid].followers;S.platformFollowers[pid]+=pf}}
- let extra=event?` ${event}!`:"";
- log(`${c.i} #${p.id}: +${num(totalViews)} views, +${num(totalF)} followers, ${event||"normal performance"}.${totalRev?` +${cash(totalRev)}.`:""}${extra}`);
- maybeEvent(p,event);
- render();
-}
-function maybeEvent(p,event){
- if(event==="🚀 VIRAL SPIKE" && Math.random()<.35)S.opps.unshift({id:Date.now(),type:"viral",title:"Your post is everywhere",desc:"A major page noticed your post. Promote yourself or ride the momentum.",a:"Ride the wave",b:"Stay authentic"});
-}
-function resolveOpp(id,choice){
- let o=S.opps.find(x=>x.id===id);if(!o)return;
- if(o.type==="viral"){
-  if(choice===1){S.cash+=250;S.fame+=3;log("💥 You rode the viral wave and gained a burst of fame.");}
-  else {S.followers+=35;log("🤝 You stayed authentic and converted some viewers into loyal followers.");}
- }
- S.opps=S.opps.filter(x=>x.id!==id);render();
-}
-function unlocks(){
- const all=["photo","short","text","long","podcast","live"];
- if(S.followers>=2500&&!S.unlocked.includes("long")){S.unlocked.push("long");log("🔓 Long Video unlocked.");}
- if(S.followers>=5000&&!S.unlocked.includes("podcast")){S.unlocked.push("podcast");log("🔓 Podcast unlocked.");}
- if(S.followers>=10000&&!S.unlocked.includes("live")){S.unlocked.push("live");log("🔓 Livestream unlocked.");}
-}
-function buy(id){
- let u=G.upgrades.find(x=>x.id===id);if(!u||has(id))return;
- if(S.cash<u.c){log("Not enough cash.");return}
- S.cash-=u.c;S.equipment.push(id);S.networth+=u.c;log(`🛠️ Purchased ${u.n}.`);render();
-}
-function sponsor(){
- let candidates=[
-  {min:1000,er:.04,pay:500,title:"Small Brand Deal",desc:"One sponsored post. Moderate payout."},
-  {min:10000,er:.05,pay:5000,title:"Major Brand Deal",desc:"A larger campaign with real audience expectations."},
-  {min:100000,er:.06,pay:30000,title:"National Campaign",desc:"A serious sponsorship opportunity."}
+function maybeBusiness(){
+ if(S.popup)return;
+ let chance=S.followers<1000?.015:S.followers<10000?.035:S.followers<100000?.055:.08;
+ if(Math.random()>chance)return;
+ let deals=[
+  {min:1000,icon:"💼",title:"A Brand Wants You",body:"A small brand loves your content and wants a sponsored post.",reward:Math.max(250,Math.floor(S.followers*.25)),label:"TAKE THE DEAL"},
+  {min:10000,icon:"⭐",title:"BIG BRAND OPPORTUNITY",body:"A national brand wants you in its next campaign.",reward:Math.max(2500,Math.floor(S.followers*.55)),label:"SIGN THE DEAL"},
+  {min:100000,icon:"🏆",title:"MAJOR CAMPAIGN",body:"This could become one of your biggest paydays yet.",reward:Math.max(15000,Math.floor(S.followers*.8)),label:"TAKE THE CAMPAIGN"}
  ];
- let c=candidates.slice().reverse().find(x=>S.followers>=x.min&&avgER()>=x.er);
- if(!c){log("No serious sponsor is willing to pay you yet. Build followers and engagement.");return}
- S.cash+=c.pay;S.fame+=c.pay/10000;log(`🤝 Accepted ${c.title}: +${cash(c.pay)}.`);
- render();
+ let d=deals.slice().reverse().find(x=>S.followers>=x.min);if(!d)return;
+ showPopup(d.icon,d.title,d.body,money(d.reward),()=>{S.cash+=d.reward;S.fame+=d.reward/10000;log(`💼 Accepted a business deal for ${money(d.reward)}.`);render()})
 }
-function specialGuest(){
- if(S.cash<500||!S.unlocked.includes("podcast")){log("You need an unlocked podcast and $500 for a guest.");return}
- S.cash-=500;S.followers+=Math.max(20,S.followers*.008);S.fame+=1;log("🎙️ Special guest appearance boosted your podcast audience.");render();
+function showPopup(icon,title,body,reward,action){S.popup={icon,title,body,reward,action};renderPopup()}
+function renderPopup(){
+ let e=document.getElementById("popup");if(!S.popup){e.innerHTML="";return}
+ let p=S.popup;e.innerHTML=`<div class="pop"><div class="pop-box"><div class="pop-icon">${p.icon}</div><h2>${p.title}</h2><p>${p.body}</p><div class="reward">${p.reward}</div><button onclick="closePopup()">CONTINUE</button></div></div>`
 }
-function careerLevel(){
- let f=S.followers;
- if(f<100)return ["Nobody","Build your first audience"];
- if(f<1000)return ["Creator","People are starting to notice"];
- if(f<10000)return ["Rising Creator","You have a real audience"];
- if(f<100000)return ["Influencer","Brands know your name"];
- if(f<1e6)return ["Celebrity","Your audience is a business"];
- if(f<1e7)return ["Mogul","You own a media empire"];
- return ["Media Titan","You have become the platform"];
+function closePopup(){let a=S.popup?.action;S.popup=null;document.getElementById("popup").innerHTML="";if(a)a();else render()}
+function buy(id){
+ let u=D.upgrades.find(x=>x.id===id);if(!u||has(id))return;
+ if(S.cash<u.cost){log("You don't have enough cash yet.");render();return}
+ S.cash-=u.cost;S.equipment.push(id);log(`✨ Bought ${u.name}.`);render()
 }
+function showTab(id,b){document.querySelectorAll(".tab-content").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active")}
 function render(){
- unlocks();
- document.getElementById("cash").textContent=cash(S.cash);
- document.getElementById("followers").textContent=num(S.followers);
- document.getElementById("fame").textContent=num(S.fame);
- document.getElementById("views").textContent=num(S.views);
- document.getElementById("engagement").textContent=(avgER()*100).toFixed(2)+"%";
- document.getElementById("networth").textContent=cash(S.cash+S.networth);
- renderContent();renderQueue();renderPosts();renderPlatforms();renderUpgrades();renderRevenue();renderCareer();renderOpps();renderLog();
+ let [c,n]=career();document.getElementById("cash").textContent=money(S.cash);document.getElementById("followers").textContent=fmt(S.followers);document.getElementById("fame").textContent=fmt(S.fame);document.getElementById("views").textContent=fmt(S.views);document.getElementById("career").textContent=c;document.getElementById("next").textContent=n;
+ renderCreate();renderPosts();renderUpgrades();renderPlatforms();renderActivity();renderPopup()
 }
-function renderContent(){
- let g=document.getElementById("contentGrid");g.innerHTML="";
- Object.keys(G.content).forEach(id=>{let c=G.content[id],locked=!S.unlocked.includes(id),b=document.createElement("button");b.className="content";b.disabled=locked;
- b.innerHTML=`<div class="icon">${c.i}</div><b>${c.n}</b><small>${c.d}</small><span class="pill">${locked?"LOCKED":"$"+c.c+" • "+productionTime(id)+"s"}</span>`;
- if(!locked)b.onclick=()=>create(id);g.appendChild(b)})
-}
-function renderQueue(){
- let e=document.getElementById("queue");if(!S.queue.length){e.innerHTML='<div class="sub">Nothing producing. You can have multiple productions running.</div>';return}
- e.innerHTML=S.queue.map(x=>{let c=G.content[x.type],pct=100*(1-x.remain/x.total);return `<div class="post"><div class="post-head"><div><div class="post-title">${c.i} ${c.n} #${x.id}</div><div class="sub">Producing • ${x.remain}s remaining</div></div><span class="tag">${Math.round(pct)}%</span></div><div class="bar"><div style="width:${pct}%"></div></div></div>`}).join("");
+function renderCreate(){
+ let g=document.getElementById("createGrid");g.innerHTML="";
+ Object.entries(D.types).forEach(([id,c])=>{let locked=!S.unlockable?.includes(id)&&!["photo","short","text"].includes(id);let b=document.createElement("button");b.className="create";b.disabled=locked;b.innerHTML=`<div class="ico">${c.icon}</div><b>${c.name}</b><small>${locked?"Unlock as your audience grows.":c.desc}</small><span class="price">${locked?"🔒 LOCKED":c.cost?money(c.cost):"FREE"} • ${prodTime(id)}s</span>`;if(!locked)b.onclick=()=>create(id);g.appendChild(b)})
 }
 function renderPosts(){
- let e=document.getElementById("posts");if(!S.posts.length){e.innerHTML='<div class="sub">No published posts yet.</div>';return}
- e.innerHTML=S.posts.slice(0,12).map(p=>{let c=G.content[p.type],er=p.views?p.engagement/p.views:0;return `<div class="post"><div class="post-head"><div><div class="post-title">${c.i} ${c.n} #${p.id}</div><div class="sub">${p.phase} • refreshes: ${p.refreshes}</div></div><span class="tag">${p.quality<.6?"Low":p.quality<.85?"Good":p.quality<1.1?"Great":"Elite"} quality</span></div><div class="metrics"><div class="metric"><span>Views</span><b>${num(p.views)}</b></div><div class="metric"><span>Engagement</span><b>${(er*100).toFixed(2)}%</b></div><div class="metric"><span>Followers</span><b>+${num(p.followers)}</b></div><div class="metric"><span>Revenue</span><b>${cash(p.revenue)}</b></div><div class="metric"><span>Momentum</span><b>${p.momentum.toFixed(2)}</b></div></div><div class="actions"><button class="primary" ${p.phase==="Dead"?"disabled":""} onclick="refreshPost(${p.id})">Refresh Performance</button><button onclick="inspect(${p.id})">Details</button></div></div>`}).join("");
+ let e=document.getElementById("posts");if(!S.posts.length&&!S.queue.length){e.innerHTML='<div class="empty">Make your first post. Your empire starts here.</div>';return}
+ let q=S.queue.map(x=>{let c=D.types[x.type],pct=100*(1-x.remain/x.total);return `<div class="post"><div class="post-head"><div><div class="post-name">${c.icon} ${c.name} #${x.id}</div><div class="post-status">Making it... ${x.remain}s</div></div><span class="pill">${Math.round(pct)}%</span></div><div class="bar"><div style="width:${pct}%"></div></div></div>`}).join("");
+ let posts=S.posts.slice(0,10).map(p=>{let c=D.types[p.type],er=p.views?p.eng/p.views:0;return `<div class="post"><div class="post-head"><div><div class="post-name">${c.icon} ${c.name} #${p.id}</div><div class="post-status">${p.state}</div></div><span class="pill">${p.checks} checks</span></div><div class="metrics"><div class="metric"><span>Views</span><b>${fmt(p.views)}</b></div><div class="metric"><span>Engagement</span><b>${(er*100).toFixed(1)}%</b></div><div class="metric"><span>Followers</span><b>+${fmt(p.foll)}</b></div><div class="metric"><span>Earned</span><b>${money(p.money)}</b></div></div><button class="refresh" ${p.state==="Done"?"disabled":""} onclick="check(${p.id})">${p.state==="Done"?"POST IS DONE":"✨ CHECK RESULTS"}</button></div>`}).join("");
+ e.innerHTML=q+posts
 }
-function inspect(id){let p=S.posts.find(x=>x.id===id);if(!p)return;let txt=Object.entries(p.platforms).map(([k,v])=>`${G.platforms[k].n}: ${num(v.views)} views / ${num(v.followers)} followers / ${cash(v.revenue)}`).join("\n");alert(`${G.content[p.type].n} #${id}\nQuality: ${(p.quality*100).toFixed(0)}%\nPhase: ${p.phase}\n\n${txt||"No performance yet."}`)}
-function renderPlatforms(){
- let e=document.getElementById("platforms");e.innerHTML="";
- Object.entries(G.platforms).forEach(([id,p])=>{let u=platformUnlocked(id),m=G.monetize[id],mon=eligible(id),pf=S.platformFollowers[id]||0;e.innerHTML+=`<div class="platform"><div class="post-head"><span class="name">${p.i} ${p.n}</span><span class="tag">${u?(mon?"MONETIZED":"BUILDING"):"LOCKED"}</span></div><small>${u?`Audience ${num(pf)} • ${mon?"Revenue active":"Need "+num(m[0])+" followers + "+(m[1]*100).toFixed(0)+"% engagement"}`:`Unlock at ${num(p.u)} followers`}</small></div>`})
-}
-function renderUpgrades(){
- let e=document.getElementById("upgrades");e.innerHTML="";
- G.upgrades.forEach(u=>{let own=has(u.id);e.innerHTML+=`<div class="upgrade"><div><b>${u.n}</b><div class="sub">${u.d}</div></div><button ${own||S.cash<u.c?"disabled":""} onclick="buy('${u.id}')">${own?"Owned":cash(u.c)}</button></div>`})
-}
-function renderRevenue(){
- let active=Object.keys(G.platforms).filter(eligible).length;
- document.getElementById("revenue").innerHTML=`<div class="twocol"><div class="choice"><div class="small">Monetized platforms</div><div class="big">${active}/6</div></div><div class="choice"><div class="small">Avg. engagement</div><div class="big">${(avgER()*100).toFixed(1)}%</div></div></div><div class="notice" style="margin-top:8px">Platform revenue is based on monetized views. Sponsorships are separate and require a real audience.</div>`;
-}
-function renderCareer(){
- let [level,desc]=careerLevel();let next=[100,1000,10000,100000,1000000,10000000].find(x=>x>S.followers);
- document.getElementById("career").innerHTML=`<div class="row"><div><div class="big">${level}</div><div class="sub">${desc}</div></div><span class="tag">Level ${S.prestige+1}</span></div>${next?`<div class="notice" style="margin-top:9px">Next career milestone: ${num(next)} followers.</div>`:"<div class='notice' style='margin-top:9px'>You have reached the current career ceiling. The empire is yours.</div>"}`;
-}
-function renderOpps(){
- let e=document.getElementById("opps");e.innerHTML=`<div class="actions"><button onclick="sponsor()">Check for Brand Deal</button><button onclick="specialGuest()">Book Podcast Guest</button></div>`;
- if(!S.opps.length)e.innerHTML+='<div class="sub" style="margin-top:8px">No special opportunities right now.</div>';
- else S.opps.slice(0,3).forEach(o=>e.innerHTML+=`<div class="event"><h3>${o.title}</h3><div class="small">${o.desc}</div><div class="twocol"><button class="secondary" onclick="resolveOpp(${o.id},1)">${o.a}</button><button class="secondary" onclick="resolveOpp(${o.id},2)">${o.b}</button></div></div>`);
-}
-function renderLog(){document.getElementById("log").innerHTML=S.logs.map(x=>`<div class="feed-row">${x}</div>`).join("")}
-function save(){localStorage.setItem("socialEmpireFull",JSON.stringify(S));log("Game saved.");render()}
-function exportSave(){let blob=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="social-empire-save.json";a.click()}
-function resetGame(){if(confirm("Reset the entire Social Empire save?")){localStorage.removeItem("socialEmpireFull");location.reload()}}
-setInterval(()=>{finishQueue();render()},1000);render();
+function renderUpgrades(){let e=document.getElementById("upgrades");e.innerHTML=Object.values(D.upgrades).map(u=>`<div class="upgrade"><div><b>${u.name}</b><small>${u.desc}</small></div><button class="buy" ${has(u.id)||S.cash<u.cost?"disabled":""} onclick="buy('${u.id}')">${has(u.id)?"OWNED":money(u.cost)}</button></div>`).join("")}
+function renderPlatforms(){let e=document.getElementById("platforms");e.innerHTML=Object.entries(D.platforms).map(([id,p])=>{let u=unlocked(id),m=id==="castbox"?.10:id==="loop"?.06:id==="pulse"?.07:.05;let req=id==="castbox"?500:id==="livewave"?750:id==="loop"?5000:id==="pulse"?2500:1000;let mon=u&&S.followers>=req&&avgEng()>=m;return `<div class="platform"><div><b>${p.icon} ${p.name}</b><small>${u?(mon?"💰 You're making money here.":"You're building an audience here."):"Unlocks at "+fmt(p.unlock)+" followers"}</small></div><span class="pill">${u?(mon?"MONETIZED":"ACTIVE"):"LOCKED"}</span></div>`}).join("")}
+function renderActivity(){document.getElementById("activity").innerHTML=S.logs.map(x=>`<div>${x}</div>`).join("")}
+function save(){localStorage.setItem("socialEmpireSimple",JSON.stringify(S));log("Game saved.");render()}
+function resetGame(){if(confirm("Start Social Empire over?")){localStorage.removeItem("socialEmpireSimple");location.reload()}}
+function unlockContent(){S.unlockable=[];if(S.followers>=2500)S.unlockable.push("long");if(S.followers>=5000)S.unlockable.push("podcast");if(S.followers>=10000)S.unlockable.push("live")}
+setInterval(()=>{unlockContent();finish();render()},1000);unlockContent();render();
 </script>
 </body>
 </html>
