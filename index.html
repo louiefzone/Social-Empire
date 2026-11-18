@@ -68,9 +68,9 @@ types:{
 photo:{name:"Photo",icon:"📸",desc:"Quick, easy, keeps your audience interested.",time:4,cost:0,q:.50,r:.70,e:1,f:.55,m:.18},
 short:{name:"Short Video",icon:"🎬",desc:"Fast growth and big viral potential.",time:6,cost:5,q:.72,r:1.45,e:1.1,f:1.28,m:.42},
 text:{name:"Post",icon:"✍️",desc:"Start conversations with your audience.",time:2,cost:0,q:.45,r:.62,e:1.25,f:.72,m:.08},
-long:{name:"Long Video",icon:"🎥",desc:"More work, but much more valuable.",time:11,cost:35,q:1,r:1.05,e:1.15,f:1.02,m:1.55},
-podcast:{name:"Podcast",icon:"🎙️",desc:"Build a loyal audience and attract sponsors.",time:14,cost:45,q:.90,r:.72,e:1.35,f:.95,m:1.35},
-live:{name:"Livestream",icon:"🔴",desc:"Connect with your audience in a big way.",time:16,cost:50,q:1,r:1.1,e:1.5,f:1.18,m:1.25}
+long:{name:"Long Video",icon:"🎥",desc:"More work, but much more valuable.",time:9,cost:20,q:1,r:1.05,e:1.15,f:1.02,m:1.55},
+podcast:{name:"Podcast",icon:"🎙️",desc:"Build a loyal audience and attract sponsors.",time:12,cost:30,q:.90,r:.72,e:1.35,f:.95,m:1.35},
+live:{name:"Livestream",icon:"🔴",desc:"Connect with your audience in a big way.",time:13,cost:35,q:1,r:1.1,e:1.5,f:1.18,m:1.25}
 },
 platforms:{
 vibra:{name:"Vibra",icon:"◎",unlock:0,base:.075,disc:1,r:2.1},
@@ -82,18 +82,18 @@ livewave:{name:"LiveWave",icon:"●",unlock:10000,base:.06,disc:1.35,r:4.2}
 },
 upgrades:[
 {id:"phone",name:"Better Phone",cost:150,desc:"Your posts look better.",q:.08},
-{id:"light",name:"Ring Light",cost:350,desc:"Better photos and videos.",q:.07},
-{id:"edit",name:"Editing App",cost:700,desc:"Make better videos.",q:.10},
-{id:"camera",name:"Creator Camera",cost:1800,desc:"A big quality boost.",q:.16},
-{id:"mic",name:"Studio Mic",cost:2500,desc:"Better podcasts.",q:.12},
-{id:"editor",name:"Hire an Editor",cost:5000,desc:"Videos get made faster.",tv:.35},
-{id:"photog",name:"Hire a Photographer",cost:6500,desc:"Photos can be made automatically.",photo:true},
-{id:"manager",name:"Hire a Social Manager",cost:9000,desc:"Your best post gets checked automatically.",manager:true},
-{id:"producer",name:"Hire a Producer",cost:15000,desc:"You can make more posts at once.",producer:true},
-{id:"stream",name:"Streaming Manager",cost:22000,desc:"Livestreams finish faster.",stream:true},
-{id:"pod",name:"Podcast Producer",cost:30000,desc:"Podcasts finish faster.",pod:true},
-{id:"creative",name:"Creative Director",cost:60000,desc:"Everything gets noticeably better.",q:.20,fc:.10},
-{id:"company",name:"Your Production Company",cost:150000,desc:"You're running a real media business.",company:true}
+{id:"light",name:"Ring Light",cost:275,desc:"Better photos and videos.",q:.07},
+{id:"edit",name:"Editing App",cost:500,desc:"Make better videos.",q:.10},
+{id:"camera",name:"Creator Camera",cost:1200,desc:"A big quality boost.",q:.16},
+{id:"mic",name:"Studio Mic",cost:1800,desc:"Better podcasts.",q:.12},
+{id:"editor",name:"Hire an Editor",cost:3500,desc:"Videos get made faster.",tv:.35},
+{id:"photog",name:"Hire a Photographer",cost:5000,desc:"Photos can be made automatically.",photo:true},
+{id:"manager",name:"Hire a Social Manager",cost:7000,desc:"Your best post gets checked automatically.",manager:true},
+{id:"producer",name:"Hire a Producer",cost:12000,desc:"You can make more posts at once.",producer:true},
+{id:"stream",name:"Streaming Manager",cost:17000,desc:"Livestreams finish faster.",stream:true},
+{id:"pod",name:"Podcast Producer",cost:24000,desc:"Podcasts finish faster.",pod:true},
+{id:"creative",name:"Creative Director",cost:50000,desc:"Everything gets noticeably better.",q:.20,fc:.10},
+{id:"company",name:"Your Production Company",cost:120000,desc:"You're running a real media business.",company:true}
 ]};
 let S=JSON.parse(localStorage.getItem("socialEmpireSimple")||"null")||{
 cash:100,followers:0,fame:0,views:0,created:0,posts:[],queue:[],equipment:[],logs:["Welcome! You're starting with zero followers. Let's change that."],seq:0,platformFollowers:{vibra:0,loop:0,pulse:0,viewtube:0,castbox:0,livewave:0},engHistory:[],popup:null
@@ -104,7 +104,7 @@ const fmt=n=>n<1000?Math.floor(n):n<1e6?(n/1000).toFixed(1)+"K":n<1e9?(n/1e6).to
 function log(x){S.logs.unshift(new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})+" — "+x);S.logs=S.logs.slice(0,45)}
 function qBonus(){return S.equipment.reduce((a,id)=>a+(D.upgrades.find(x=>x.id===id)?.q||0),0)}
 function avgEng(){let a=S.engHistory.slice(-15),v=a.reduce((x,y)=>x+y.v,0),e=a.reduce((x,y)=>x+y.e,0);return v?e/v:0}
-function career(){let f=S.followers;if(f<100)return["Nobody","First 100 followers"];if(f<1000)return["Creator","People are noticing"];if(f<10000)return["Influencer","You've built an audience"];if(f<100000)return["Celebrity","Brands know you"];if(f<1000000)return["Star","You're a household name"];if(f<10000000)return["Mogul","You're running an empire"];return["Media Titan","You own the attention"]}
+function career(){let f=S.followers;if(f<50)return["Nobody","First 50 followers"];if(f<500)return["Creator","People are noticing"];if(f<5000)return["Influencer","You've built an audience"];if(f<50000)return["Celebrity","Brands know you"];if(f<500000)return["Star","You're a household name"];if(f<5000000)return["Mogul","You're running an empire"];return["Media Titan","You own the attention"]}
 function unlocked(id){return S.followers>=D.platforms[id].unlock}
 function prodTime(type){let t=D.types[type].time;if(has("producer"))t*=.75;if((type==="short"||type==="long")&&has("editor"))t*=.65;if(type==="live"&&has("stream"))t*=.65;if(type==="podcast"&&has("pod"))t*=.6;return Math.max(1,Math.ceil(t))}
 function create(type){
@@ -129,13 +129,13 @@ function check(id){
  for(let [id,pl] of Object.entries(D.platforms)){
   if(!unlocked(id))continue;
   let base=S.platformFollowers[id]*pl.base;
-  let discovery=(5+Math.pow(Math.max(1,S.followers),.48)*1.35)*pl.disc*c.r*p.q*life*mult;
+  let discovery=(14+Math.pow(Math.max(1,S.followers),.56)*2.05)*pl.disc*c.r*p.q*life*mult;
   let views=Math.max(1,base+discovery);
-  let er=Math.min(.25,Math.max(.008,.03*c.e*(.78+p.q*.42)*(.9+Math.random()*.22)));
+  let er=Math.min(.30,Math.max(.012,.035*c.e*(.80+p.q*.45)*(.9+Math.random()*.22)));
   let e=views*er;
-  let f=views*Math.min(.03,.00115*c.f*(.76+p.q*.5)*(1+(e/Math.max(views,1)))*((has("creative")?1.1:1)));
-  let monetized=unlocked(id)&&S.followers>=(id==="castbox"?500:id==="livewave"?750:id==="loop"?5000:id==="pulse"?2500:1000)&&avgEng()>=(id==="castbox"?.10:id==="loop"?.06:id==="pulse"?.07:.05);
-  let m=monetized?views/1000*pl.r*c.m:0;
+  let f=views*Math.min(.045,.0022*c.f*(.82+p.q*.55)*(1+(e/Math.max(views,1))*1.5)*((has("creative")?1.1:1)));
+  let monetized=unlocked(id)&&S.followers>=(id==="castbox"?250:id==="livewave"?500:id==="loop"?1000:id==="pulse"?750:500)&&avgEng()>=(id==="castbox"?.08:id==="loop"?.05:id==="pulse"?.06:.04);
+  let m=monetized?views/1000*pl.r*c.m*(1+Math.min(1.5,S.followers/50000)):0;
   total+=views;eng+=e;followers+=f;rev+=m;
   S.platformFollowers[id]+=f;
   p.platforms[id]??={views:0,eng:0,foll:0,money:0};
@@ -194,7 +194,7 @@ function renderPlatforms(){let e=document.getElementById("platforms");e.innerHTM
 function renderActivity(){document.getElementById("activity").innerHTML=S.logs.map(x=>`<div>${x}</div>`).join("")}
 function save(){localStorage.setItem("socialEmpireSimple",JSON.stringify(S));log("Game saved.");render()}
 function resetGame(){if(confirm("Start Social Empire over?")){localStorage.removeItem("socialEmpireSimple");location.reload()}}
-function unlockContent(){S.unlockable=[];if(S.followers>=2500)S.unlockable.push("long");if(S.followers>=5000)S.unlockable.push("podcast");if(S.followers>=10000)S.unlockable.push("live")}
+function unlockContent(){S.unlockable=[];if(S.followers>=750)S.unlockable.push("long");if(S.followers>=2500)S.unlockable.push("podcast");if(S.followers>=5000)S.unlockable.push("live")}
 setInterval(()=>{unlockContent();finish();render()},1000);unlockContent();render();
 </script>
 </body>
