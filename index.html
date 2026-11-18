@@ -3,281 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Social Empire — Beta 0.1.1</title>
+<title>Social Empire — Beta 0.2</title>
 <style>
-:root{
-  --bg:#0b1020; --panel:#141b31; --panel2:#1b2440; --text:#f4f7ff; --muted:#9da8c7;
-  --accent:#7c5cff; --accent2:#23c6a6; --danger:#ff5f6d; --gold:#f6c85f; --line:#2a3558;
-}
-*{box-sizing:border-box} body{margin:0;background:linear-gradient(160deg,#090d19,#101832 55%,#0c1224);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-button{font:inherit;cursor:pointer} .app{max-width:1100px;margin:auto;padding:20px}
-header{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:18px}
-h1{font-size:28px;margin:0}.tag{color:var(--muted);font-size:13px;margin-top:4px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.stat,.panel{background:rgba(20,27,49,.94);border:1px solid var(--line);border-radius:16px}
-.stat{padding:13px}.stat .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.stat .value{font-size:23px;font-weight:800;margin-top:4px}
-.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.panel{padding:16px;margin-bottom:14px}
-.panel h2{font-size:16px;margin:0 0 12px}.sub{color:var(--muted);font-size:12px}
-.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.content-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;flex-direction:column;min-height:160px}
-.icon{font-size:26px}.content-card h3{margin:6px 0 3px;font-size:15px}.content-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}.meta{display:flex;justify-content:space-between;margin-top:auto;padding-top:10px;font-size:11px;color:#c9d0e7}
-.primary{border:0;border-radius:10px;padding:10px 12px;background:var(--accent);color:white;font-weight:800;margin-top:10px}.primary:hover{filter:brightness(1.08)}.primary:disabled{opacity:.45;cursor:not-allowed}
-.secondary{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#11182c;color:var(--text);font-weight:700}
-.active{border-left:4px solid var(--accent2);background:linear-gradient(90deg,rgba(35,198,166,.08),transparent)}
-.post-title{font-size:18px;font-weight:800}.badge{display:inline-block;font-size:10px;padding:4px 7px;border-radius:99px;background:#263253;color:#dbe2f7;margin-left:5px}
-.progress{height:9px;background:#0b1020;border-radius:99px;overflow:hidden;margin:10px 0}.bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.metric{background:#10172b;border-radius:10px;padding:9px}.metric b{display:block;font-size:16px}.metric span{font-size:10px;color:var(--muted)}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:120px}
-.log{max-height:260px;overflow:auto}.log-item{font-size:12px;padding:8px 0;border-bottom:1px solid #202b49;color:#cbd3e8}.log-item:last-child{border:0}
-.platform{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #202b49}.platform:last-child{border:0}.platform-name{font-weight:700;font-size:13px}.platform small{display:block;color:var(--muted);font-size:10px}.locked{opacity:.45}
-.controls{display:flex;gap:8px}.controls button{font-size:11px}
-.notice{padding:10px 12px;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.3);border-radius:10px;color:#dce0ff;font-size:12px;margin-bottom:12px}
-.empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
-footer{text-align:center;color:#65718f;font-size:10px;padding:8px}
-@media(max-width:800px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.app{padding:12px}.stats{gap:7px}.stat{padding:10px}.stat .value{font-size:19px}.content-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}header{flex-direction:column}}
+*{box-sizing:border-box}body{margin:0;background:#0d1020;color:#f4f6ff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit}.app{max-width:1100px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}.brand h1{margin:0;font-size:28px}.brand p{margin:4px 0 0;color:#9ca6c5}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.stat,.card{background:#151a2f;border:1px solid #272e4d;border-radius:16px}.stat{padding:14px}.stat span{display:block;color:#9ca6c5;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.stat strong{display:block;margin-top:4px;font-size:21px}.grid{display:grid;grid-template-columns:1.35fr .9fr;gap:14px}.card{padding:16px;margin-bottom:14px}.card h2{font-size:16px;margin:0 0 12px}.muted{color:#9ca6c5}.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.content{background:#10152a;border:1px solid #30385c;border-radius:14px;padding:14px;text-align:left;color:#fff;cursor:pointer}.content:hover{border-color:#6978c9;transform:translateY(-1px)}.content.locked{opacity:.45;cursor:not-allowed}.content .icon{font-size:24px}.content b{display:block;margin:5px 0}.content small{color:#aab2ce;line-height:1.35}.pill{display:inline-block;border:1px solid #394269;border-radius:999px;padding:3px 7px;font-size:11px;color:#b9c2e3;margin-top:7px}.active{border-color:#6676d1}.bar{height:9px;background:#252c49;border-radius:99px;overflow:hidden;margin:10px 0}.bar>div{height:100%;background:#7d8cff}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.post-title{font-size:19px;font-weight:750}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.metric{background:#10152a;border-radius:11px;padding:9px}.metric span{display:block;color:#9ca6c5;font-size:11px}.metric b{display:block;margin-top:3px}.platform{padding:11px 0;border-bottom:1px solid #252b47}.platform:last-child{border:0}.platform .name{font-weight:700}.platform small{color:#9ca6c5}.upgrade{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #252b47}.upgrade:last-child{border:0}.upgrade button,.secondary{border:1px solid #414b78;background:#202744;color:#fff;border-radius:10px;padding:8px 11px;cursor:pointer}.upgrade button:disabled{opacity:.4;cursor:not-allowed}.log{max-height:240px;overflow:auto;font-size:12px}.log div{padding:6px 0;border-bottom:1px solid #222846;color:#b9c2dc}.toolbar{display:flex;gap:8px}.toolbar button{border:1px solid #394269;background:#171d35;color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer}.notice{padding:11px;border-radius:12px;background:#111831;border:1px solid #30395e;color:#c5cbea;font-size:13px;line-height:1.45}.money{color:#7fe0aa}.good{color:#8fd3ff}.warn{color:#ffd58a}.danger{color:#ff9b9b}.big{font-size:28px;font-weight:800}@media(max-width:800px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:450px){.app{padding:12px}.content-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:24px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header>
-  <div><h1>Social Empire</h1><div class="tag">Beta 0.1.1 — build your creator empire</div></div>
-  <div class="controls"><button class="secondary" onclick="saveGame()">Save</button><button class="secondary" onclick="resetGame()">Reset</button></div>
-</header>
-
-<div class="stats">
-  <div class="stat"><div class="label">Cash</div><div class="value" id="cash">$100</div></div>
-  <div class="stat"><div class="label">Followers</div><div class="value" id="followers">0</div></div>
-  <div class="stat"><div class="label">Fame</div><div class="value" id="fame">0</div></div>
-  <div class="stat"><div class="label">Total Views</div><div class="value" id="views">0</div></div>
-</div>
-
-<div class="notice" id="notice">
-  You are starting from zero. Make your first piece of content, build an audience, and turn attention into a business.
-</div>
-
-<div class="grid">
-<main>
-<section class="panel">
-  <h2>Create Content</h2>
-  <div class="sub">Every post is distributed to your unlocked platforms automatically.</div>
-  <div id="contentGrid" class="content-grid" style="margin-top:12px">
-    <div class="content-card">
-      <div class="icon">📸</div><h3>Photo</h3><p>Fast and cheap. Good for maintaining your audience and building your personal brand.</p>
-      <div class="meta"><span>Free</span><span>10 sec</span></div>
-      <button class="primary" onclick="createPost('photo')">CREATE POST</button>
-    </div>
-    <div class="content-card">
-      <div class="icon">🎬</div><h3>Short Video</h3><p>Built for discovery. Strong viral potential and follower growth.</p>
-      <div class="meta"><span>$5</span><span>30 sec</span></div>
-      <button class="primary" onclick="createPost('short')">CREATE POST</button>
-    </div>
-    <div class="content-card">
-      <div class="icon">✍️</div><h3>Text</h3><p>Instant and free. Great for conversation and engagement.</p>
-      <div class="meta"><span>Free</span><span>5 sec</span></div>
-      <button class="primary" onclick="createPost('text')">CREATE POST</button>
-    </div>
+  <div class="top">
+    <div class="brand"><h1>Social Empire</h1><p>Beta 0.2 — Creator Economy</p></div>
+    <div class="toolbar"><button onclick="saveGame()">Save</button><button onclick="resetGame()">Reset</button></div>
   </div>
-</section>
 
-<section class="panel">
-  <h2>Active Post</h2>
-  <div id="activePost"><div class="empty">Create your first post above.</div></div>
-</section>
+  <div class="stats">
+    <div class="stat"><span>Cash</span><strong class="money" id="cash">$100</strong></div>
+    <div class="stat"><span>Followers</span><strong id="followers">0</strong></div>
+    <div class="stat"><span>Fame</span><strong id="fame">0</strong></div>
+    <div class="stat"><span>Lifetime Views</span><strong id="views">0</strong></div>
+  </div>
 
-<section class="panel">
-  <h2>Upgrades</h2>
-  <div id="upgrades"></div>
-</section>
-</main>
+  <div class="grid">
+    <main>
+      <div class="card">
+        <h2>Create Content</h2>
+        <div class="notice">Every post is automatically distributed to your unlocked platforms. Your equipment affects future posts — not posts you've already published.</div>
+        <div class="content-grid" id="contentGrid"></div>
+      </div>
 
-<aside>
-<section class="panel">
-  <h2>Platforms</h2>
-  <div id="platforms"></div>
-</section>
-<section class="panel">
-  <h2>Activity</h2>
-  <div id="log" class="log"></div>
-</section>
-</aside>
-</div>
-<footer>Social Empire is a fictional prototype. Balance values are intentionally experimental.</footer>
+      <div class="card">
+        <h2>Active Post</h2>
+        <div id="activePost"></div>
+      </div>
+
+      <div class="card">
+        <h2>Platforms</h2>
+        <div id="platforms"></div>
+      </div>
+    </main>
+
+    <aside>
+      <div class="card"><h2>Creator Dashboard</h2><div id="dashboard"></div></div>
+      <div class="card"><h2>Equipment & Team</h2><div id="upgrades"></div></div>
+      <div class="card"><h2>Activity</h2><div class="log" id="log"></div></div>
+    </aside>
+  </div>
 </div>
 
 <script>
-const TYPES={
- photo:{name:"Photo",icon:"📸",cost:0,time:10,quality:10,reach:0.85,engagement:0.045,follow:0.0025,money:0.15,life:180,desc:"Quick brand maintenance."},
- short:{name:"Short Video",icon:"🎬",cost:5,time:30,quality:18,reach:1.55,engagement:0.065,follow:0.005,money:0.45,life:240,desc:"Discovery and follower growth."},
- text:{name:"Text",icon:"✍️",cost:0,time:5,quality:8,reach:0.65,engagement:0.085,follow:0.0015,money:0.05,life:150,desc:"Conversation and community."}
+const C={
+  tick:1000,
+  content:{
+    photo:{name:"Photo",icon:"📸",desc:"Fast brand maintenance. Reliable engagement, modest discovery.",time:5,cost:0,quality:.52,reach:.72,engage:1.0,follow:.55,money:.18,job:"Brand"},
+    short:{name:"Short Video",icon:"🎬",desc:"Your discovery engine. High upside and strong follower conversion.",time:8,cost:5,quality:.72,reach:1.42,engage:1.12,follow:1.28,money:.42,job:"Growth"},
+    text:{name:"Text",icon:"✍️",desc:"Conversation and community. Cheap, quick, but weak monetization.",time:3,cost:0,quality:.46,reach:.62,engage:1.25,follow:.72,money:.08,job:"Engagement"},
+    long:{name:"Long Video",icon:"🎥",desc:"Expensive and slower, but built for money and loyal audiences.",time:15,cost:35,quality:1.02,reach:1.05,engage:1.15,follow:1.02,money:1.55,job:"Money"},
+    podcast:{name:"Podcast",icon:"🎙️",desc:"Slower discovery with excellent loyalty and sponsorship potential.",time:20,cost:45,quality:.92,reach:.72,engage:1.35,follow:.95,money:1.35,job:"Loyalty"},
+    livestream:{name:"Livestream",icon:"🔴",desc:"A timed commitment with huge community and monetization potential.",time:25,cost:50,quality:1.0,reach:1.08,engage:1.48,follow:1.18,money:1.25,job:"Community"}
+  },
+  platforms:{
+    vibra:{name:"Vibra",icon:"◎",unlocks:0,baseReach:.075,discovery:1.0,engage:1.0,follow:1.0,rpm:2.1},
+    loop:{name:"Loop",icon:"▶",unlocks:500,baseReach:.045,discovery:2.5,engage:.92,follow:1.28,rpm:1.2},
+    pulse:{name:"Pulse",icon:"✦",unlocks:1000,baseReach:.065,discovery:1.25,engage:1.25,follow:.92,rpm:1.5},
+    viewtube:{name:"ViewTube",icon:"▣",unlocks:2500,baseReach:.055,discovery:1.15,engage:1.1,follow:1.05,rpm:5.8},
+    castbox:{name:"Castbox",icon:"◉",unlocks:5000,baseReach:.07,discovery:.65,engage:1.42,follow:.9,rpm:7.5},
+    livewave:{name:"LiveWave",icon:"●",unlocks:10000,baseReach:.06,discovery:1.35,engage:1.5,follow:1.08,rpm:4.2}
+  },
+  upgrades:[
+    {id:"phone",name:"Better Smartphone",cost:150,desc:"+8% quality on future posts",q:.08},
+    {id:"light",name:"Ring Light",cost:350,desc:"+7% quality on future posts",q:.07},
+    {id:"edit",name:"Editing Software",cost:700,desc:"+10% quality on future videos",q:.10},
+    {id:"camera",name:"Creator Camera",cost:1800,desc:"+16% quality on future video/photo",q:.16},
+    {id:"mic",name:"Studio Microphone",cost:2500,desc:"+12% quality on future audio content",q:.12},
+    {id:"editor",name:"Hire an Editor",cost:5000,desc:"Video production time -35%",timeVideo:.35},
+    {id:"manager",name:"Social Media Manager",cost:9000,desc:"Refreshes your active post automatically",autoRefresh:true},
+    {id:"producer",name:"Producer",cost:15000,desc:"Major production times -25%",timeAll:.25}
+  ],
+  monetization:{
+    vibra:{followers:1000,engage:0.05},
+    loop:{followers:5000,engage:0.06},
+    pulse:{followers:2500,engage:0.07},
+    viewtube:{followers:1000,engage:0.05},
+    castbox:{followers:500,engage:0.10},
+    livewave:{followers:750,engage:0.08}
+  }
 };
-const PLATFORMS={
- social:{name:"Vibra",desc:"Visual / personal brand",reach:0.08,discovery:1.0,conv:1.0},
- short:{name:"Loop",desc:"Short-form / viral",reach:0.035,discovery:2.2,conv:1.35},
- text:{name:"Pulse",desc:"Text / conversation",reach:0.06,discovery:0.9,conv:1.1}
-};
-const UPGRADES=[
- {id:"phone",name:"Better Smartphone",cost:75,desc:"+8 quality for future posts.",effect:"quality",value:8,req:0},
- {id:"light",name:"Ring Light",cost:150,desc:"+7 quality for future photo/video posts.",effect:"quality",value:7,req:50},
- {id:"edit",name:"Editing Software",cost:300,desc:"+10 quality for future video posts.",effect:"videoQuality",value:10,req:150},
- {id:"mic",name:"Creator Microphone",cost:500,desc:"+8 quality and monetization potential.",effect:"quality",value:8,req:500}
-];
 
-let state={
- cash:100,followers:0,fame:0,totalViews:0,totalEngagement:0,
- post:null,owned:[],platformFollowers:{social:0,short:0,text:0},
- log:["Welcome to Social Empire. Your first audience is waiting."],
- lastTick:Date.now()
+let S=JSON.parse(localStorage.getItem("socialEmpireBeta02")||"null")||{
+ cash:100,followers:0,fame:0,lifetimeViews:0,posts:0,created:0,
+ equipment:[],unlocked:["photo","short","text"],active:null,history:[],
+ platformStats:{},logs:["Welcome to Social Empire. Build an audience before you build an empire."]
 };
 
-function fmt(n){
- if(n<1000)return Math.floor(n).toLocaleString();
- if(n<1e6)return (n/1e3).toFixed(n<1e4?1:0)+"K";
- if(n<1e9)return (n/1e6).toFixed(n<1e7?1:0)+"M";
- return (n/1e9).toFixed(1)+"B";
-}
-function money(n){return "$"+n.toFixed(2);}
-function log(msg){state.log.unshift(msg);state.log=state.log.slice(0,40);}
-function saveGame(){localStorage.setItem("socialEmpireBeta",JSON.stringify(state)); log("Game saved."); render();}
-function loadGame(){try{let x=JSON.parse(localStorage.getItem("socialEmpireBeta"));if(x)state={...state,...x};}catch(e){}}
-function resetGame(){if(confirm("Reset your creator empire?")){localStorage.removeItem("socialEmpireBeta");location.reload();}}
-
-function qualityFor(type){
- let q=TYPES[type].quality;
- if(state.owned.includes("phone"))q+=8;
- if(state.owned.includes("light") && type!=="text")q+=7;
- if(state.owned.includes("edit") && type==="short")q+=10;
- if(state.owned.includes("mic") && (type==="short"||type==="photo"))q+=8;
- return q;
-}
-function canCreate(type){
- if(state.post)return false;
- return state.cash>=TYPES[type].cost;
-}
+function fmt(n){if(n<1000)return Math.floor(n).toString();if(n<1e6)return (n/1000).toFixed(1)+"K";if(n<1e9)return (n/1e6).toFixed(2)+"M";return (n/1e9).toFixed(2)+"B"}
+function money(n){return "$"+(n<1000?Math.floor(n):n<1e6?(n/1000).toFixed(1)+"K":(n/1e6).toFixed(2)+"M")}
+function avgEngage(){let h=S.history.filter(x=>x.views>0).slice(-10);if(!h.length)return 0;let v=h.reduce((a,x)=>a+x.views,0),e=h.reduce((a,x)=>a+x.engagement,0);return v?e/v:0}
+function qBonus(){return S.equipment.reduce((a,id)=>a+(C.upgrades.find(x=>x.id===id)?.q||0),0)}
+function has(id){return S.equipment.includes(id)}
+function timeFor(type){let t=C.content[type].time;if(has("producer"))t*=.75;if((type==="short"||type==="long")&&has("editor"))t*=.65;return Math.max(2,Math.ceil(t))}
+function unlockedPlatforms(){return Object.entries(C.platforms).filter(([id,p])=>S.followers>=p.unlocks)}
 function createPost(type){
- if(!canCreate(type))return;
- const t=TYPES[type];
- state.cash-=t.cost;
- state.post={
-  type, title:generateTitle(type), created:Date.now(), readyAt:Date.now()+t.time*1000,
-  views:0,engagement:0,followers:0,revenue:0,stage:"producing", quality:qualityFor(type),
-  elapsed:0, life:t.life
- };
- log(`${t.icon} You started producing a ${t.name}.`);
- render();
+  if(S.active){log("Finish or wait for the current post before creating another.");return}
+  const c=C.content[type]; if(S.cash<c.cost){log("Not enough cash for that production.");return}
+  S.cash-=c.cost; S.created++;
+  const quality=Math.min(1.6,c.quality*(1+qBonus())*(.9+Math.random()*.25));
+  S.active={type,quality,remaining:timeFor(type),phase:"Producing",published:false,views:0,engagement:0,followers:0,revenue:0,age:0,started:Date.now(),platforms:{}};
+  log(`${c.icon} Started producing ${c.name}.`);
+  render();
 }
-function generateTitle(type){
- const titles={
- photo:["A day in my life","New setup","Trying something different","Weekend update","Behind the scenes"],
- short:["You need to see this","I didn't expect this to happen","My honest reaction","This changed everything","Wait for the ending"],
- text:["Hot take","Am I the only one?","Quick thought","Let's settle this","Nobody talks about this"]
- };
- return titles[type][Math.floor(Math.random()*titles[type].length)];
+function publish(){
+  let p=S.active;if(!p||p.published)return;
+  p.published=true;p.phase="Growing";p.age=0;
+  log(`🚀 ${C.content[p.type].name} published across ${unlockedPlatforms().length} platform(s).`);
+  calculateTick(true);render();
 }
-function publishPost(){
- if(!state.post||state.post.stage!=="producing")return;
- state.post.stage="growing"; state.post.published=Date.now();
- log(`${TYPES[state.post.type].icon} Your ${TYPES[state.post.type].name.toLowerCase()} is live: "${state.post.title}".`);
+function platformReachRate(f){if(f<100)return .25;if(f<1000)return .15;if(f<10000)return .10;if(f<100000)return .07;if(f<1000000)return .05;return .035}
+function calculateTick(first=false){
+  let p=S.active;if(!p||!p.published)return;
+  const c=C.content[p.type]; const trend=0.85+Math.random()*.5;
+  const lifecycle=p.age<12?1.0:p.age<24?.72:p.age<38?.38:.12;
+  let tickViews=0,tickEng=0,tickF=0,tickMoney=0;
+  for(const [id,pl] of unlockedPlatforms()){
+    const followerReach=S.followers*pl.baseReach;
+    const discovery=(180+Math.pow(Math.max(1,S.followers),.48)*22)*pl.discovery*c.reach*p.quality*trend*lifecycle;
+    const views=Math.max(1,(followerReach+discovery)/12);
+    const er=Math.min(.25,Math.max(.012,.035*c.engage*pl.engage*(.75+p.quality*.45)*(0.9+Math.random()*.25)));
+    const engagement=views*er;
+    const follow=views*Math.min(.025,.0015*c.follow*pl.follow*(.75+p.quality*.55)*(1+Math.min(.5,engagement/Math.max(views,1))));
+    const monetized=eligible(id)?views:0;
+    const revenue=monetized/1000*pl.rpm*c.money;
+    tickViews+=views;tickEng+=engagement;tickF+=follow;tickMoney+=revenue;
+    if(!p.platforms[id])p.platforms[id]={views:0,engagement:0,followers:0,revenue:0};
+    Object.assign(p.platforms[id],{
+      views:p.platforms[id].views+views,
+      engagement:p.platforms[id].engagement+engagement,
+      followers:p.platforms[id].followers+follow,
+      revenue:p.platforms[id].revenue+revenue
+    });
+  }
+  p.views+=tickViews;p.engagement+=tickEng;p.followers+=tickF;p.revenue+=tickMoney;
+  S.lifetimeViews+=tickViews;S.followers+=tickF;S.cash+=tickMoney;S.fame+=tickViews/100000;
+  p.age++;
+  if(p.age>55){p.phase="Expired";log(`⌛ ${c.name} expired with ${fmt(p.views)} views.`);S.history.push({...p});S.active=null}
+  else if(p.age>38)p.phase="Declining";else if(p.age>24)p.phase="Mature";
+  if(first&&tickViews>100)log(`👀 Your first wave reached ${fmt(tickViews)} views.`);
+}
+function eligible(id){const m=C.monetization[id];return !!m&&S.followers>=m.followers&&avgEngage()>=m.engage}
+function refresh(){
+  if(!S.active){log("Nothing is active. Create a post first.");return}
+  if(!S.active.published){log("That post is still being produced.");return}
+  calculateTick();render();
 }
 function tick(){
- const p=state.post;
- if(p){
-  const now=Date.now();
-  if(p.stage==="producing" && now>=p.readyAt)publishPost();
-  if(p.stage==="growing"||p.stage==="mature"||p.stage==="declining"){
-    const age=(now-p.published)/1000;
-    if(age>p.life*0.72)p.stage="declining"; else if(age>p.life*0.35)p.stage="mature"; else p.stage="growing";
-    const remaining=Math.max(0,p.life-age);
-    const stageMult=p.stage==="growing"?1.0:p.stage==="mature"?.68:.32;
-    const qMult=1+(p.quality/100);
-    const followerReach=state.followers*Math.max(.03, .22/(1+Math.log10(Math.max(1,state.followers))));
-    const discoveryBase=(40+p.quality*8)*TYPES[p.type].reach;
-    const discovery=discoveryBase*stageMult*qMult*(1+Math.random()*0.5);
-    const views=Math.max(1,(followerReach*TYPES[p.type].reach*0.18+discovery));
-    p.views+=views;
-    state.totalViews+=views;
-    const er=Math.min(.18,TYPES[p.type].engagement*(0.65+p.quality/35)*(0.85+Math.random()*.3));
-    const eng=views*er;
-    p.engagement+=eng; state.totalEngagement+=eng;
-    const conv=TYPES[p.type].follow*(0.65+p.quality/40)*(0.8+Math.random()*.4);
-    const newF=eng*conv + views*TYPES[p.type].follow*0.12;
-    p.followers+=newF; state.followers+=newF;
-    const eligible=state.followers>=1000 && accountER()>=.05;
-    if(eligible)p.revenue+=views*TYPES[p.type].money/1000;
-    state.cash+=views*TYPES[p.type].money/1000;
-    state.fame+=views*.000015+eng*.00001;
-    if(age>=p.life){log(`Your post "${p.title}" has expired with ${fmt(p.views)} views.`);state.post=null;}
+  if(S.active&&!S.active.published){
+    S.active.remaining--;
+    if(S.active.remaining<=0)publish();
+  }else if(S.active&&has("manager")){
+    calculateTick();
   }
- }
- render();
-}
-function accountER(){
- const v=Math.max(1,state.totalViews);return state.totalEngagement/v;
-}
-function refreshPost(){
- if(!state.post){log("There is no active post to refresh.");render();return;}
- if(state.post.stage==="producing"){log("Your post is still being produced.");render();return;}
- const bonus=10+state.post.quality*0.7;
- state.post.views+=bonus;state.totalViews+=bonus;
- state.post.engagement+=bonus*TYPES[state.post.type].engagement;
- state.totalEngagement+=bonus*TYPES[state.post.type].engagement;
- log(`📈 You checked your post. +${Math.floor(bonus)} views.`);
- render();
-}
-function finishProduction(){
- if(!state.post||state.post.stage!=="producing")return;
- state.post.readyAt=Date.now();publishPost();render();
+  render();
 }
 function buy(id){
- const u=UPGRADES.find(x=>x.id===id); if(!u||state.owned.includes(id)||state.cash<u.cost||state.followers<u.req)return;
- state.cash-=u.cost;state.owned.push(id);log(`🔧 Purchased ${u.name}. It affects future content.`);render();
+  const u=C.upgrades.find(x=>x.id===id);if(!u||has(id))return;
+  if(S.cash<u.cost){log("Not enough cash for that upgrade.");return}
+  S.cash-=u.cost;S.equipment.push(id);log(`🛠️ Purchased ${u.name}.`);
+  render();
 }
+function log(x){S.logs.unshift(new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})+" — "+x);S.logs=S.logs.slice(0,50)}
+function saveGame(){localStorage.setItem("socialEmpireBeta02",JSON.stringify(S));log("Game saved.");render()}
+function resetGame(){if(confirm("Reset your Social Empire save?")){localStorage.removeItem("socialEmpireBeta02");location.reload()}}
 function render(){
- document.getElementById("cash").textContent=money(state.cash);
- document.getElementById("followers").textContent=fmt(state.followers);
- document.getElementById("fame").textContent=fmt(state.fame);
- document.getElementById("views").textContent=fmt(state.totalViews);
-
- const post=state.post, box=document.getElementById("activePost");
- if(!post){box.innerHTML='<div class="empty">Create your first post above.</div>';}
- else{
-  const t=TYPES[post.type];
-  if(post.stage==="producing"){
-   const pct=Math.min(100,Math.max(0,(Date.now()-(post.readyAt-t.time*1000))/(t.time*1000)*100));
-   box.innerHTML=`<div class="active"><div class="post-title">${t.icon} ${t.name}<span class="badge">PRODUCING</span></div>
-   <div class="sub" style="margin-top:6px">"${post.title}"</div><div class="progress"><div class="bar" style="width:${pct}%"></div></div>
-   <div class="sub">Production is underway. You can leave the game open or come back later.</div>
-   <div class="actions"><button class="primary" onclick="finishProduction()">FINISH NOW</button></div></div>`;
-  }else{
-   const pct=Math.max(0,Math.min(100,(Date.now()-post.published)/(post.life*1000)*100));
-   const er=post.views?post.engagement/post.views:0;
-   box.innerHTML=`<div class="active"><div class="post-title">${t.icon} ${t.name}<span class="badge">${post.stage.toUpperCase()}</span></div>
-   <div class="sub" style="margin-top:6px">"${post.title}" · Quality ${Math.round(post.quality)}</div>
-   <div class="progress"><div class="bar" style="width:${pct}%"></div></div>
-   <div class="metrics">
-    <div class="metric"><b>${fmt(post.views)}</b><span>Views</span></div>
-    <div class="metric"><b>${fmt(post.engagement)}</b><span>Engagement</span></div>
-    <div class="metric"><b>${fmt(post.followers)}</b><span>New Followers</span></div>
-    <div class="metric"><b>${money(post.revenue)}</b><span>Revenue</span></div>
-   </div>
-   <div class="sub" style="margin-top:10px">Engagement rate: ${(er*100).toFixed(1)}% · ${post.stage==="declining"?"This post is winding down.":"Performance is still accumulating."}</div>
-   <div class="actions"><button class="primary" onclick="refreshPost()">REFRESH / CHECK</button></div></div>`;
-  }
- }
- const up=document.getElementById("upgrades");
- up.innerHTML=UPGRADES.map(u=>{
-  const owned=state.owned.includes(u.id), locked=state.followers<u.req;
-  return `<div style="padding:11px 0;border-bottom:1px solid #202b49;opacity:${locked&&!owned?.5:1}">
-   <div style="display:flex;justify-content:space-between;gap:10px"><div><b>${u.name}</b><div class="sub">${u.desc}</div></div>
-   <button class="secondary" ${owned||locked||state.cash<u.cost?"disabled":""} onclick="buy('${u.id}')">${owned?"OWNED":locked?u.req+" followers":money(u.cost)}</button></div></div>`;
- }).join("");
-
- const pf=document.getElementById("platforms");
- pf.innerHTML=Object.entries(PLATFORMS).map(([id,p])=>`<div class="platform"><div><div class="platform-name">${p.name}</div><small>${p.desc}</small></div><div style="text-align:right"><b>${fmt(state.platformFollowers[id]||0)}</b><small> followers</small></div></div>`).join("");
-
- document.getElementById("log").innerHTML=state.log.map(x=>`<div class="log-item">${x}</div>`).join("");
+  document.getElementById("cash").textContent=money(S.cash);
+  document.getElementById("followers").textContent=fmt(S.followers);
+  document.getElementById("fame").textContent=fmt(S.fame);
+  document.getElementById("views").textContent=fmt(S.lifetimeViews);
+  renderContent();renderActive();renderPlatforms();renderUpgrades();renderDashboard();renderLog();
 }
-loadGame();render();setInterval(tick,1000);
+function renderContent(){
+ const g=document.getElementById("contentGrid");g.innerHTML="";
+ for(const id of Object.keys(C.content)){
+  const c=C.content[id];const locked=!S.unlocked.includes(id);
+  const b=document.createElement("button");b.className="content"+(locked?" locked":"");b.disabled=locked||!!S.active;
+  b.innerHTML=`<div class="icon">${c.icon}</div><b>${c.name}</b><small>${c.desc}</small><span class="pill">${locked?"LOCKED":"$"+c.cost+" • "+timeFor(id)+"s"}</span>`;
+  if(!locked)b.onclick=()=>createPost(id);g.appendChild(b);
+ }
+}
+function renderActive(){
+ const el=document.getElementById("activePost");
+ if(!S.active){el.innerHTML='<div class="muted">No active post. Pick a content type above.</div>';return}
+ const p=S.active,c=C.content[p.type];
+ if(!p.published){
+  const pct=100*(1-p.remaining/timeFor(p.type));
+  el.innerHTML=`<div class="row"><div><div class="post-title">${c.icon} ${c.name}</div><div class="muted">Producing...</div></div><div class="big">${p.remaining}s</div></div><div class="bar"><div style="width:${Math.max(0,pct)}%"></div></div><div class="notice">Your post is being made. Upgrades bought after publication won't change this post.</div>`;
+  return;
+ }
+ const life=p.phase==="Growing"?"📈 Growing":p.phase==="Mature"?"🟢 Mature":p.phase==="Declining"?"📉 Declining":"⌛ Expired";
+ el.innerHTML=`<div class="row"><div><div class="post-title">${c.icon} ${c.name}</div><div class="muted">${life}</div></div><button class="secondary" onclick="refresh()">Refresh</button></div>
+ <div class="metrics"><div class="metric"><span>Views</span><b>${fmt(p.views)}</b></div><div class="metric"><span>Engagement</span><b>${(p.views?100*p.engagement/p.views:0).toFixed(2)}%</b></div><div class="metric"><span>Followers</span><b>+${fmt(p.followers)}</b></div><div class="metric"><span>Revenue</span><b>${money(p.revenue)}</b></div></div>
+ <div class="notice" style="margin-top:12px">Age ${p.age}/55 • Refresh advances performance. ${has("manager")?"Your Social Media Manager is also running this post automatically.":""}</div>`;
+}
+function renderPlatforms(){
+ const el=document.getElementById("platforms");el.innerHTML="";
+ for(const [id,p] of Object.entries(C.platforms)){
+  const unlocked=S.followers>=p.unlocks;
+  const m=C.monetization[id];const mon=eligible(id);
+  const d=document.createElement("div");d.className="platform";
+  d.innerHTML=`<div class="row"><div><span class="name">${p.icon} ${p.name}</span><br><small>${unlocked?`Unlocked • ${mon?"💰 Monetized":"Building audience"}`:`Unlocks at ${fmt(p.unlocks)} followers`}</small></div><div class="${mon?"money":""}">${unlocked?(mon?"MONETIZED":"UNLOCKED"):"LOCKED"}</div></div>`;
+  el.appendChild(d);
+ }
+}
+function renderUpgrades(){
+ const el=document.getElementById("upgrades");el.innerHTML="";
+ for(const u of C.upgrades){
+  const owned=has(u.id);const d=document.createElement("div");d.className="upgrade";
+  d.innerHTML=`<div><b>${u.name}</b><div class="muted">${u.desc}</div></div><button ${owned||S.cash<u.cost?"disabled":""} onclick="buy('${u.id}')">${owned?"Owned":money(u.cost)}</button>`;
+  el.appendChild(d);
+ }
+}
+function renderDashboard(){
+ const e=avgEngage();const next=[100,500,1000,2500,5000,10000].find(x=>x>S.followers);
+ document.getElementById("dashboard").innerHTML=`
+ <div class="row"><span class="muted">Avg. engagement</span><b>${(e*100).toFixed(2)}%</b></div>
+ <div class="row" style="margin-top:8px"><span class="muted">Posts created</span><b>${S.created}</b></div>
+ <div class="row" style="margin-top:8px"><span class="muted">Owned upgrades</span><b>${S.equipment.length}</b></div>
+ <div class="row" style="margin-top:8px"><span class="muted">Next platform</span><b>${next?fmt(next):"All unlocked"}</b></div>
+ <div class="notice" style="margin-top:12px">Quality improves your consistency and conversion, but it never guarantees virality. Discovery is intentionally noisy.</div>`;
+}
+function renderLog(){document.getElementById("log").innerHTML=S.logs.map(x=>`<div>${x}</div>`).join("")}
+render();setInterval(tick,C.tick);
 </script>
 </body>
 </html>
